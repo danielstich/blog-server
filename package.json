@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielstich/portfolio.git"
+  },
+  "author": "DS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielstich/portfolio/issues"
+  },
+  "homepage": "https://github.com/danielstich/portfolio#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
