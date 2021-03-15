@@ -1,0 +1,26 @@
+body {
+    margin: 0px;
+}
+
+#header1 {
+    display: none;
+    text-align: left;
+    margin-left: 5%;
+    font-family: monospace;
+}
+
+header {
+    background-color: grey;
+    height: 4em;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-family: monospace;
+    margin-right: 5%;
+
+    
+}
