@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Noto+Sans+JP&family=Open+Sans&display=swap');
+
+@keyframes arrowUp {
+    0% {opacity: 25%;}
+    50% {opacity: 75%;}
+    100% {opacity: 25%;}
+}
+
+body {
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+    
+}
+
+header {
+    background-color: grey;
+    height: 5vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin-right: 5px;
+}
+
+#inlineScroll {
+    text-align: left;
+    margin-left: 5%;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    height: 95vh;
+}
+
+main {
+    background-color: green;
+    height: 100%;
+    width: 90vw;
+}
+
+#Projects {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#mainHeader {
+    position: fixed;
+    
+    text-align: center;
+}
+
+.card {
+    background-color: antiquewhite;
+    height: min(300px, 25vh);
+    width: min(300px, 25vh);
+    border: 2px solid black;
+    border-radius: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.card button {
+    margin-bottom: 3px;
+}
+
+nav {
+    height: 100%;
+    width: 10vw;
+    background-color: black;
+    color: white;
+}
+
+nav ul {
+    list-style-type: none; 
+}
+
+nav li:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+#hideBar {
+    color: black;
+    position: fixed;
+    right: 50%;
+    animation-name: arrowUp;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    
+}
+#hideBar:hover {
+    color: white;
+    transition: color 200ms;
+    cursor: pointer;
+}
+
+#hideBar:not(hover) {
+    color: black;
+    transition: color 2s;
+}
+
+#pause {
+    position: fixed;
+    padding-bottom: 5px;
+}
+#play {
+    position: fixed;
+    padding-bottom: 5px;
+}
+
+#pause:hover {
+    color: rgb(122, 31, 31);
+    cursor: pointer;
+}
+
+#play:hover {
+    color: rgb(122, 31, 31);
+    cursor: pointer;
+}
+
+
