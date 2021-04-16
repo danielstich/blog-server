@@ -13,69 +13,69 @@
 
 <body>
     <header id="header">
-        <h1 id="pause">⏸</h1>
-        <h1 id="play" style="display: none;">⏵</h1>
-        <h1 id="inlineScroll">This is my website</h1>
-        <h1 id="hideBar">🠕</h1>
         <h1>Daniel Stich</h1>
     </header>
 
-    <div id="container">
-        <nav id="navbar">
-            This is my nav
-            <ul>
-                <li id="showProjects" page="Projects">Projects</li>
-                <li id="showAbout" page="About">About</li>
-                <li id="showContact" page="Contact">Contact</li>
-            </ul>
-        </nav>
+    <nav id="navbar">
+        <ul>
+            <li id="showHome" page="Home" style="background-color: #182033;">Home</li>
+            <li id="showAbout" page="About">About</li>
+            <li id="showBlog" page="Blog">Contact</li>
+            <li id="showProjects" page="Projects">Projects</li>
+        </ul>
+    </nav>
+
+    <main id="container">
+        <section id="Projects" style="display: none;">
+            
+            
+            <div class="cardfilled">
+                <a href="./projects/N-Puzzle/"><img src="./img/n-puzzle.PNG" alt="N-Puzzle Preview"></a>                    
+
+            </div>
+            <div class="card">
+                <p>Project card</p>
+                <p>+</p>
+                <button disabled="disabled">
+                    See it!
+                </button>
+
+            </div>
+            <div class="card">
+                <p>Project card</p>
+                <p>+</p>
+                <button disabled="disabled">
+                    See it!
+                </button>
+
+            </div>
+            <div class="card">
+                <p>Project card</p>
+                <p>+</p>
+                <button disabled="disabled">
+                    See it!
+                </button>
+
+            </div>
+        </section>
+
+        <section id="About" style="display: none;">
+            This is about me
+        </section>
+
+        <section id="Blog" style="display: none;">
+            Things I will write about
+        </section>
+
+        <section id="Home">
+                <h1 id="pause">⏸</h1>
+                <h1 id="play" style="display: none;">⏵</h1>
+                <h1 id="inlineScroll">This is my website</h1>
+        </section>
+       
+    </main>
     
-        <main>
-            <h1 id="mainHeader">Projects</h1>
 
-            <section id="Projects">
-                
-                
-                <div class="cardfilled">
-                    <a href="./projects/N-Puzzle/"><img src="./img/n-puzzle.PNG" alt="N-Puzzle Preview"></a>                    
-
-                </div>
-                <div class="card">
-                    <p>Project card</p>
-                    <p>+</p>
-                    <button disabled="disabled">
-                        See it!
-                    </button>
-
-                </div>
-                <div class="card">
-                    <p>Project card</p>
-                    <p>+</p>
-                    <button disabled="disabled">
-                        See it!
-                    </button>
-
-                </div>
-                <div class="card">
-                    <p>Project card</p>
-                    <p>+</p>
-                    <button disabled="disabled">
-                        See it!
-                    </button>
-
-                </div>
-            </section>
-
-            <section id="About" style="display: none;">
-                This is about me
-            </section>
-
-            <section id="Contact" style="display: none;">
-                Call me maybe...
-            </section>
-        </main>
-    </div>
-    
     
 </body>
 </html>

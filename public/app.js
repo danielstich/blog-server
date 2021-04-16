@@ -53,10 +53,10 @@ let hideBar = document.getElementById("hideBar");
 let header = document.getElementById("header");
 let container = document.getElementById("container")
 
-hideBar.addEventListener("click", e => {
-    header.style.display = 'none';
-    container.style.height = '100vh'
-})
+// hideBar.addEventListener("click", e => {
+//     header.style.display = 'none';
+//     container.style.height = '100vh'
+// })
 
 
 let navbar = document.getElementById("navbar")
@@ -65,12 +65,20 @@ let mainHeader = document.getElementById("mainHeader")
 navbar.addEventListener("click", e => {
     let listItems = document.getElementsByTagName('li');
     let sections = document.getElementsByTagName('section');
+
+    for (let item of listItems) {
+        if (e.target != item) {
+            item.style.backgroundColor = "#45475f";
+        }
+        else {
+            item.style.backgroundColor = "#182033";
+        }
+    }
+    
     
     let page = e.target.getAttribute('Page')
-    console.log(sections[page]);
-    mainHeader.innerText = page;
-
-
+    // console.log(sections[page]);
+    
     for (let section of sections) {
         if (page != section.id) {
             section.style.display = 'none';
