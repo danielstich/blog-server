@@ -166,3 +166,16 @@ header {
     color: rgb(122, 31, 31);
     cursor: pointer;
 }
+
+/* Blog CSS Elements */
+
+#Blog {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 200px auto 200px;
+}
+
+#Blog li {
+    cursor: pointer;
+}
