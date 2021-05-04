@@ -8,16 +8,20 @@ const { findByID, getPosts } = require('../../models/dao')
 
 router.get('/', (req, res) => {
     getPosts().then(result => {
+	res.set('Access-Control-Allow-Origin', '*');
         res.json(result);
     // console.log(post);
     })
-})
+});
 
 // Get One post by ID
 
 router.get('/:id', (req, res) => {
-    findByID(req.params.id).then(result => res.json(result));
-})
+    findByID(req.params.id).then(result => {
+	res.set('Access-Control-Allow-Origin', '*');
+	res.json(result)
+	})
+});
 
 // Post a blog post
 

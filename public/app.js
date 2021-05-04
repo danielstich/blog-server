@@ -100,7 +100,7 @@ navbar.addEventListener("click", e => {
 // BLOG SECTION //
 // BLOG SECTION //
 
-let isTesting = true;
+let isTesting = false;
 let uri = 'https://www.stich.pub/api/posts/';
 if (isTesting) {
     uri = 'http://localhost:5000/api/posts/'
@@ -114,7 +114,9 @@ function createElement(type) {
 
 // retrieve posts from Backend
 async function getPosts(){
-    let posts = await fetch(uri).then(result => result.json());
+    let posts = await fetch(uri)
+	.then(result => result.json())
+	.catch(error => console.log(error));
     return posts;
 }
 
