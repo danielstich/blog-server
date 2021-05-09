@@ -3,10 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Noto+Sans+JP&family=Open+Sans&display=swap');
 
 :root {
-    --main-bg-color: #182033;
-    --main-font: white;
-    --card-alt-header: #45475f;
-    --header-font-size: min(max(2.5vw, 20px), 32px);
+    --main-bg-color: #283656;
+    --main-font: #ccc;
+    --card-alt-header: #222;
+    --header-font-size: min(max(2vw, 20px), 30px);
 }
 
 body {
@@ -19,22 +19,34 @@ body {
 /* Top Header CSS Elements */
 
 header {
-    background-color: var(--main-bg-color);
-    height: 10vh;
+    background-color: (var(--main-bg-color));
+    height: 8vh;
     margin: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: var(--header-font-size);
+}
+header h1 {
+    margin-left: 10px;
+}
+
+#login-button {
+    margin-right: 10px;
+    background-color: #444;
+    color: var(--main-font);
+    font-size: 24px;
+    font-weight: 100;
+    cursor: pointer;
 }
 
 /* Navbar CSS Elements */
 
 #navbar {
-    height: 10vh;
+    height: 6vh;
     margin: auto;
     background-color: var(--card-alt-header);
-    color: white;
+    color: var(--main-font);
     display: flex;
     justify-content: center;
 }
@@ -53,10 +65,9 @@ header {
 }
 
 #navbar ul li {
-    border-radius: 20px 0 0 0;
-    font-size: max(2vw, 20px);
+    border-radius: 8px 16px 0 0;
+    font-size: max(1.5vw, 20px);
     padding: 0 4px 0 4px;
-    background-color: linear-gradient(to top, var(--main-bg-color), var(--card-alt-header));
     height: 75%;
     display: flex;
     align-items: center;
@@ -74,7 +85,7 @@ header {
     display: flex;
     background-color: var(--main-bg-color);
     flex-direction: row;
-    height: 80vh;
+    height: 82vh;
     width: 100vw;
     justify-content: center;
     align-items: center;
@@ -148,34 +159,201 @@ header {
     
 }
 
-#pause {
-    position: fixed;
-    margin-top: max(20px, 3.5vw);
-}
-#play {
+#pause, #play {
     position: fixed;
     margin-top: max(20px, 3.5vw);
 }
 
-#pause:hover {
+#pause:hover, #play:hover {
     color: rgb(122, 31, 31);
     cursor: pointer;
 }
 
-#play:hover {
-    color: rgb(122, 31, 31);
+/* Shared Elements */
+
+input {
+    border: 0;
+    border-radius: 5px;
+    background-color: #222;
+    height: 25px;
+    text-align: center;
+    color: #ccc;
+}
+
+textarea {
+    border: 0;
+    border-radius: 5px;
+    background-color: #222;
+    height: 50px;
+    text-align: center;
+    color: #ccc;
+}
+
+select {
+    border: 0;
+    border-radius: 5px;
+    background-color: #222;
+    height: 25px;
+    text-align: center;
+    color: #ccc;
+}
+
+option {
+    border: 0;
+    border-radius: 5px;
+    background-color: #222;
+    height: 25px;
+    text-align: center;
+    color: #ccc;
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    background-color: #444;
+}
+
+button {
+    color: #ccc;
+    border: 0;
+    background-color: #444;
+    border-radius: 5px;
     cursor: pointer;
 }
+
 
 /* Blog CSS Elements */
 
 #Blog {
     height: 100%;
     width: 100%;
+    padding-top: 4vh;
+
     display: grid;
-    grid-template-columns: 200px auto 200px;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+}
+
+#Blog aside {
+    width: 15vw;
 }
 
 #Blog li {
     cursor: pointer;
+}
+
+#BlogEdit {
+    width: 70vw;
+    height: fit-content;
+    grid-template-columns: 20% 75% 5%;
+    justify-content: space-between;
+    align-items: center;
+    grid-row-gap: 5px;
+}
+
+#BlogEdit input {
+    width: 100%;
+}
+#BlogEdit textarea {
+    width: 100%;
+}
+
+#BlogEdit button {
+    width: fit-content;
+    justify-self: center;
+    font-size: 16px;
+}
+
+#BlogEdit label {
+    margin-left: 5px;
+}
+
+#BlogEdit hr {
+    width: 99.2%;
+    justify-self: center;
+    grid-column: 1 / 4;
+    border: 0;
+    border-top: 1px dotted #CCC;
+    padding: 0;
+    margin: 0;
+}
+
+#menu-bar {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#menu-bar * {
+    width: 60%;
+    margin-top: 10px;
+}
+
+#submit-blog {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* Login CSS Elements */
+
+#login {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #094832;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#login div {
+    padding-top: 10px;
+    width: 40vh;
+    background-color: #483209;
+    opacity: 100%;
+    border-radius: 10px;
+    display: flex;
+    color: #ccc;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .40);
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#login div form {
+    height: 80%;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+#login div form button {
+    width: 50%;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#login > button {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: 2px solid #ccc;
+    color: #ccc;
+    height: 30px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #094832;
 }

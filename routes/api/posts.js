@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { findByID, getPosts } = require('../../models/dao')
+const bodyParser = require('body-parser');
+const { findByID, getPosts, getToken } = require('../../models/dao')
 
 // Posts Model
 
@@ -21,6 +22,19 @@ router.get('/:id', (req, res) => {
 	res.set('Access-Control-Allow-Origin', '*');
 	res.json(result)
 	})
+});
+
+router.post('/login', bodyParser.json(), (req, res) => {
+    
+        getToken(req.body.password)
+        .then(token => {
+            console.log(`Your token is ${token}`);
+            res.json( { token: token } );
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(400).send(error);
+        })
 });
 
 // Post a blog post

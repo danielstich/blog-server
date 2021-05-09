@@ -14,19 +14,19 @@
 <body>
     <header id="header">
         <h1>Daniel Stich</h1>
+        <button id="login-button" onclick="openLogin()">Blog Login</button>
     </header>
 
     <nav id="navbar">
         <ul>
-            <li id="showHome" page="Home" style="background-color: #182033;">Home</li>
+            <li id="showProjects" page="Projects" style="background-color: #283656;">Projects</li>
             <li id="showAbout" page="About">About</li>
-            <li id="showBlog" page="Blog">Contact</li>
-            <li id="showProjects" page="Projects">Projects</li>
+            <li id="showBlog" page="Blog">Blog</li>
         </ul>
     </nav>
 
     <main id="container">
-        <section id="Projects" style="display: none;">
+        <section id="Projects" style="display: flex;">
             
             
             <div class="cardfilled">
@@ -67,15 +67,46 @@
             <aside id="BlogNav">
                 aside left
             </aside>
-            <main id="BlogMain">
+            <main id="BlogMain" style="display: flex;">
                 main middle
             </main>
+            <main id="BlogEdit" style="display: none;">
+                <label for="">Title</label>
+                <input type="text" id="title">
+                <p></p>
+                <label for="">Description</label>
+                <input type="text" id="description">
+                <p></p>
+                <label for="">Tags</label>
+                <input type="text" id="tags">
+                <p></p>
+                <hr>
+                <label for="">First Section</label>
+                <input type="text" name="" id="subtitle-1">
+                <p></p>
+                <label for="">Subsection</label>
+                <textarea id="textarea-1"cols="30" rows="10"></textarea>
+                <p></p>
+
+            </main>
             <aside>
-                aside right
+                <div id="menu-bar" style="display: none;">
+                    <select name="elements" id="elements">
+                        <option value="textarea">p</option>
+                        <option value="input">h3</option>
+                    </select>
+                    <button id="add-element">Add Element</button>
+                    <button id="submit-blog">Submit Blog</button>
+                    <button id="close-edit">Close Editor</button>
+                </div>
+                <div id="edit-menu-bar" style="display: none;">
+                    <button id="edit-blog">Edit Blog</button>
+                </div>
+                
             </aside>
         </section>
 
-        <section id="Home">
+        <section id="Home" style="display: none;">
                 <h1 id="pause">⏸</h1>
                 <h1 id="play" style="display: none;">⏵</h1>
                 <h1 id="inlineScroll">This is my website</h1>
@@ -83,7 +114,18 @@
        
     </main>
     
-
+    <aside id="login" style="display: none;">
+        <button id="login-close" onclick="closeLogin()">x</button>
+        <div>
+            <label for="">Blog Login</label>
+            <p id="login-error" style="display: none;"></p>
+            <form>
+                <input id="password" type="password" placeholder="password" required>
+                <button onclick="getToken()">Login</button>
+            </form>
+        </div>
+        
+    </aside>
     
 </body>
 </html>

@@ -1,4 +1,5 @@
 const mongo = require('mongodb');
+const crypto = require('crypto');
 
 // database URI
 const uri = require('../config/keys')
@@ -19,6 +20,7 @@ async function findByID(id) {
 
     } catch (err) {
         console.log(err)
+        throw err;
     }
 }
 
@@ -34,8 +36,37 @@ async function getPosts() {
 
     } catch (err) {
         console.log(err)
+        throw err;
     } 
+}
+
+async function getToken(password) {
+    try {
+        const db = client.db('blog');
+        const collection = db.collection('password');
+
+        // hash password
+        const hash = crypto.createHash('sha256').update(password).digest('hex');
+    
+        // create token
+        const token = crypto.randomBytes(128).toString('hex');
+        console.log(token);
+
+        // query password collection for has
+        const success = await collection.findOneAndUpdate( { 'password': hash}, { $set : { 'token': token} } );
+        console.log(success.value);
+
+        // if not found return
+        if(!success.value) throw new Error("Wrong Password");
+
+        console.log("Correct Password")
+        return token;
+
+    } catch (err) {
+        throw err;
+    }
 }
 
 exports.findByID = findByID;
 exports.getPosts = getPosts;
+exports.getToken = getToken;
