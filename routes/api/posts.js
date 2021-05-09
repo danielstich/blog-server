@@ -29,6 +29,7 @@ router.post('/login', bodyParser.json(), (req, res) => {
         getToken(req.body.password)
         .then(token => {
             console.log(`Your token is ${token}`);
+            res.set('Access-Control-Allow-Origin', '*');
             res.json( { token: token } );
         })
         .catch(error => {
