@@ -64,7 +64,7 @@ navbar.addEventListener("click", e => {
 // BLOG SECTION //
 // BLOG SECTION //
 
-let isTesting = true;
+let isTesting = false;
 let uri = 'https://www.stich.pub/api/posts/';
 if (isTesting) uri = 'http://localhost:5000/api/posts/';
 
