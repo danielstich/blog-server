@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const { findByID, getPosts, getToken } = require('../../models/dao')
+const { findByID, getPosts, getToken, postBlog } = require('../../models/dao')
 
 // Posts Model
 
@@ -9,7 +9,6 @@ const { findByID, getPosts, getToken } = require('../../models/dao')
 
 router.get('/', (req, res) => {
     getPosts().then(result => {
-	res.set('Access-Control-Allow-Origin', '*');
         res.json(result);
     // console.log(post);
     })
@@ -19,16 +18,13 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     findByID(req.params.id).then(result => {
-	res.set('Access-Control-Allow-Origin', '*');
-	res.json(result)
+	    res.json(result)
 	})
 });
 
 router.post('/login', bodyParser.json(), (req, res) => {
     getToken(req.body.password)
         .then(token => {
-            console.log(`Your token is ${token}`);
-            res.set('Access-Control-Allow-Origin', '*');
             res.json( { token: token } );
         })
         .catch(error => {
@@ -38,6 +34,17 @@ router.post('/login', bodyParser.json(), (req, res) => {
 });
 
 // Post a blog post
+
+router.post('/post', bodyParser.json(), async (req, res) => {
+    let token = req.headers.authorization;
+    try {
+        postBlog(req.body, token);
+        res.status(201);
+        res.send( { msg: 'Blog Posted' });
+    } catch (error) {
+        res.status(403).send(error);
+    }
+})
 
 // Delete a blog post
 

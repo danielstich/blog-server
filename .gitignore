@@ -3,3 +3,4 @@ public/projects/
 file.password
 config/keys.js
 hash.js
+.env

@@ -7,13 +7,73 @@
     --main-font: #ccc;
     --card-alt-header: #222;
     --header-font-size: min(max(2vw, 20px), 30px);
+    --read-font: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    --normal-font: 'Lato', sans-serif;
 }
 
 body {
     background-color: var(--main-bg-color);
     margin: 0px;
-    font-family: 'Lato', sans-serif;
+    font-family: var(--normal-font);
     color: var(--main-font);
+}
+
+/* Shared Elements */
+
+input {
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--card-alt-header);
+    height: 25px;
+    text-align: left;
+    color: var(--main-font);
+    font-family: var(--normal-font);
+    font-size: 1.3em;
+}
+
+textarea {
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--card-alt-header);
+    height: 150px;
+    text-align: left;
+    color: var(--main-font);
+    font-family: var(--read-font);
+    font-size: 1.1em;
+}
+
+select {
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--card-alt-header);
+    height: 25px;
+    text-align: center;
+    color: var(--main-font);
+}
+
+option {
+    border: 0;
+    border-radius: 5px;
+    background-color: var(--card-alt-header);
+    height: 25px;
+    text-align: center;
+    color: var(--main-font);
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+    background-color: #444;
+}
+
+button {
+    color: var(--main-font);
+    border: 0;
+    background-color: #444;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
 }
 
 /* Top Header CSS Elements */
@@ -29,15 +89,6 @@ header {
 }
 header h1 {
     margin-left: 10px;
-}
-
-#login-button {
-    margin-right: 10px;
-    background-color: #444;
-    color: var(--main-font);
-    font-size: 24px;
-    font-weight: 100;
-    cursor: pointer;
 }
 
 /* Navbar CSS Elements */
@@ -169,69 +220,41 @@ header h1 {
     cursor: pointer;
 }
 
-/* Shared Elements */
-
-input {
-    border: 0;
-    border-radius: 5px;
-    background-color: #222;
-    height: 25px;
-    text-align: center;
-    color: #ccc;
-}
-
-textarea {
-    border: 0;
-    border-radius: 5px;
-    background-color: #222;
-    height: 50px;
-    text-align: center;
-    color: #ccc;
-}
-
-select {
-    border: 0;
-    border-radius: 5px;
-    background-color: #222;
-    height: 25px;
-    text-align: center;
-    color: #ccc;
-}
-
-option {
-    border: 0;
-    border-radius: 5px;
-    background-color: #222;
-    height: 25px;
-    text-align: center;
-    color: #ccc;
-    outline: none;
-}
-
-input:focus {
-    outline: none;
-    background-color: #444;
-}
-
-button {
-    color: #ccc;
-    border: 0;
-    background-color: #444;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
 /* Blog CSS Elements */
 
 #Blog {
     height: 100%;
     width: 100%;
-    padding-top: 4vh;
-
+    margin-top: 4vh;
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-between;
+}
+
+#BlogMain {
+    width: 40vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+}
+
+#BlogMain * {
+    margin: 0;
+}
+
+#BlogMain h2 {
+    padding-top: 5px;
+    padding-bottom: 3px;
+    font-size: 1.5em;
+}
+
+#BlogMain p {
+    font-family: var(--read-font);
+    font-size: 1.2em;
+    text-indent: 1.5em;
+    padding-bottom: 3px;
+    text-align: justify;
 }
 
 #Blog aside {
@@ -253,15 +276,18 @@ button {
 
 #BlogEdit input {
     width: 100%;
+    padding-left: 5px;
+    padding-right: 10px;
 }
 #BlogEdit textarea {
     width: 100%;
+    padding-left: 5px;
+    padding-right: 10px;
 }
 
 #BlogEdit button {
-    width: fit-content;
     justify-self: center;
-    font-size: 16px;
+    align-self: center;
 }
 
 #BlogEdit label {
@@ -278,21 +304,16 @@ button {
     margin: 0;
 }
 
-#menu-bar {
+.menu-aside {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-#menu-bar * {
+.menu-aside * {
     width: 60%;
     margin-top: 10px;
-}
-
-#submit-blog {
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 /* Login CSS Elements */
@@ -304,7 +325,7 @@ button {
     z-index: 10;
     top: 0;
     left: 0;
-    background-color: #094832;
+    background-color: var(--main-bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -342,18 +363,19 @@ button {
     margin-bottom: 5px;
 }
 
-#login > button {
+#password {
+    text-align: center;
+}
+
+#login-close {
     position: fixed;
     top: 10px;
     right: 10px;
     border: 2px solid #ccc;
     color: #ccc;
-    height: 30px;
-    width: 30px;
     align-items: center;
     justify-content: center;
     padding-bottom: 4px;
     border-radius: 5px;
-    cursor: pointer;
-    background-color: #094832;
+    background-color: var(--main-bg-color);
 }

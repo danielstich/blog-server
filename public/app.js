@@ -12,14 +12,12 @@ play.addEventListener('click', e => {
     paused = false;
     play.style.display = 'none';
     pause.style.display = 'block';
-    console.log("play")
 })
 
 pause.addEventListener('click', e => {
     paused = true;
     play.style.display = 'block';
     pause.style.display = 'none';
-    console.log("pause")
 })
 
 setInterval(function() {
@@ -66,9 +64,30 @@ navbar.addEventListener("click", e => {
 // BLOG SECTION //
 // BLOG SECTION //
 
-let isTesting = false;
+let isTesting = true;
 let uri = 'https://www.stich.pub/api/posts/';
 if (isTesting) uri = 'http://localhost:5000/api/posts/';
+
+// Check for specific blog //
+
+async function loadBlogFirst() {
+    let blogPath = location.href;
+    let re = /(?<=blogs\/)\w+/;
+    let blogMatch = blogPath.match(re)[0];
+
+    console.log(blogMatch);
+
+    if (!blogMatch) {
+        // open Blog tab
+        // render Blog that matches ID
+        // render sides
+    }
+
+    
+
+}
+
+loadBlogFirst();
 
 // function to create dom element
 function createElement(type) {
@@ -112,7 +131,6 @@ function renderSide(posts) {
 async function clickPost(event) {
     let id = event.target.getAttribute("postID");
     let post = await getPostByID(id);
-    console.log(post);
     renderBody(post);
 }
 
@@ -144,12 +162,12 @@ function renderBody(post) {
         // iterate through keys array and create element based on key
         for (element of elements){
             let postElement = createElement(element);
-            postElement.innerText = section[element];
-            postSection.appendChild(postElement);
+            postElement.innerHTML = section[element];
+            blogMain.appendChild(postElement);
         }
 
         // append @postSection to main section under #Blog
-        blogMain.appendChild(postSection);
+        // blogMain.appendChild(postSection);
     }
 }
 
@@ -160,17 +178,11 @@ function renderFooter(post) {
 
 // render Blog
 async function renderBlog() {
-    
     let posts = await getPosts(uri);
-    console.log(posts.posts[0].title);
-
     renderSide(posts.posts);
-
     let firstID = posts.posts[0].post_id;
     let post = await getPostByID(firstID);
     renderBody(post);
-
-
 }
 
 // Login Button Actions
@@ -178,6 +190,7 @@ async function renderBlog() {
 function openLogin() {
     let loginPage = document.getElementById('login');
     loginPage.style.display = "flex";
+    document.getElementById('password').focus();
 }
 
 function closeLogin() {
@@ -202,7 +215,6 @@ function logOff() {
     loginbtn.innerText = 'Blog Login';
     loginbtn.onclick = openLogin;
     localStorage.setItem('token', '');
-    console.log(localStorage.getItem('token'));
     closeEditor();
     hideBlogEdit();
 }
@@ -253,14 +265,13 @@ async function getToken() {
 
 function showBlogEdit() {
     let editBlogButton = document.getElementById('edit-blog');
-    let editMenuBar = document.getElementById('edit-menu-bar');
-    editMenuBar.style.display = 'flex';
+    editBlogButton.style.display = 'block';
     editBlogButton.addEventListener('click', editBlog)
 }
 
 function hideBlogEdit() {
-    let editMenuBar = document.getElementById('edit-menu-bar');
-    editMenuBar.style.display = 'none';
+    let editBlogButton = document.getElementById('edit-blog');
+    editBlogButton.style.display = 'none';
 }
 
 function closeEditor() {
@@ -269,11 +280,15 @@ function closeEditor() {
     let menuBar = document.getElementById('menu-bar');
     let editBar = document.getElementById('edit-menu-bar');
 
-    blogMain.style.display = "flex";
-    editBar.style.display = "flex";
+    blogMain.style.display = "block";
+    menuBar.style.display = "flex";
 
     blogEdit.style.display = "none";
-    menuBar.style.display = "none";
+    editBar.style.display = "none";
+
+    for (let child of blogEdit.childNodes) {
+        child.value="";
+    }
 }
 
 // Blog Edit Functions
@@ -306,7 +321,7 @@ class Blog {
         let deleteSection = createElement('button');
     
         // set text in elements
-        title.innerText = 'Section';
+        title.innerText = (el == 'input') ? 'Subtitle' : 'Subsection';
         deleteSection.innerText = 'x';
     
         // add event listener to close element
@@ -331,7 +346,7 @@ class Blog {
         self.sections = self.sections.filter(element => element != section);
     }
 
-    submitBlog(self, event) {
+    async submitBlog(self, event) {
         let firstTitle = document.getElementById('subtitle-1').value;
         let firstSection = document.getElementById('textarea-1').value;
 
@@ -344,19 +359,35 @@ class Blog {
             comments: [],
             body: [{ h2: firstTitle }, { p: firstSection }],
             description: document.getElementById('description').value,
-            visible: false
+            visible: true,
         }
         for (let section of self.sections) {
-            console.log(section.type);
             if (section.type == 'textarea') {
                 blogObj.body.push({ p: section.value});
             }
             if (section.type == 'text') {
-                blogObj.body.push({ h3: section.value});
+                blogObj.body.push({ h2: section.value});
             }
         }
 
-        console.log(blogObj);
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization' : localStorage.getItem('token'),
+            },
+            body: JSON.stringify(blogObj),
+        }
+
+        let postURI = uri + 'post/'
+
+        await fetch(postURI, options)
+            .then(result => {
+                if (!result.ok) {
+                    console.log(result.statusText);
+                }
+                renderBlog();
+            });
     }
 }
 
@@ -367,10 +398,10 @@ function editBlog() {
     let editBar = document.getElementById('edit-menu-bar');
 
     blogMain.style.display = "none";
-    editBar.style.display = "none";
+    menuBar.style.display = "none";
 
     blogEdit.style.display = "grid";
-    menuBar.style.display = "flex";
+    editBar.style.display = "flex";
 
     let blog = new Blog();
     blog.addListener();

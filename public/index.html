@@ -14,7 +14,6 @@
 <body>
     <header id="header">
         <h1>Daniel Stich</h1>
-        <button id="login-button" onclick="openLogin()">Blog Login</button>
     </header>
 
     <nav id="navbar">
@@ -65,10 +64,10 @@
 
         <section id="Blog" style="display: none;">
             <aside id="BlogNav">
-                aside left
+                
             </aside>
-            <main id="BlogMain" style="display: flex;">
-                main middle
+            <main id="BlogMain">
+                
             </main>
             <main id="BlogEdit" style="display: none;">
                 <label for="">Title</label>
@@ -81,7 +80,7 @@
                 <input type="text" id="tags">
                 <p></p>
                 <hr>
-                <label for="">First Section</label>
+                <label for="">Subtitle</label>
                 <input type="text" name="" id="subtitle-1">
                 <p></p>
                 <label for="">Subsection</label>
@@ -90,17 +89,18 @@
 
             </main>
             <aside>
-                <div id="menu-bar" style="display: none;">
+                <div id="edit-menu-bar" class="menu-aside" style="display: none;">
                     <select name="elements" id="elements">
                         <option value="textarea">p</option>
-                        <option value="input">h3</option>
+                        <option value="input">h2</option>
                     </select>
                     <button id="add-element">Add Element</button>
                     <button id="submit-blog">Submit Blog</button>
                     <button id="close-edit">Close Editor</button>
                 </div>
-                <div id="edit-menu-bar" style="display: none;">
-                    <button id="edit-blog">Edit Blog</button>
+                <div id="menu-bar" class="menu-aside">
+                    <button id="login-button" onclick="openLogin()">Blog Login</button>
+                    <button id="edit-blog" style="display: none;">Edit Blog</button>
                 </div>
                 
             </aside>
@@ -120,8 +120,8 @@
             <label for="">Blog Login</label>
             <p id="login-error" style="display: none;"></p>
             <form>
-                <input id="password" type="password" placeholder="password" required>
-                <button onclick="getToken()">Login</button>
+                <input id="password" type="password" placeholder="password" tabindex="0" required>
+                <button onclick="getToken()" tabindex="1">Login</button>
             </form>
         </div>
         
