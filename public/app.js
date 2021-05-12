@@ -73,9 +73,9 @@ if (isTesting) uri = 'http://localhost:5000/api/posts/';
 async function loadBlogFirst() {
     let blogPath = location.href;
     let re = /(?<=blogs\/)\w+/;
-    let blogMatch = blogPath.match(re)[0];
+    // let blogMatch = blogPath.match(re)[0];
 
-    console.log(blogMatch);
+    console.log(blogPath);
 
     if (!blogMatch) {
         // open Blog tab

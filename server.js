@@ -12,11 +12,11 @@ const posts = require('./routes/api/posts');
 const blogs = require('./routes/blog/blogs');
 
 // Use Routes
-let allowed = /\.stich\.pub$/;
+let allowed = /stich\.pub$/;
 
 app.use(cors( { origin: allowed }));
-app.use('/api/posts/', posts);
-app.use('/blogs/', blogs);
+app.use('/api/posts', posts);
+app.use('/blogs', blogs);
 
 // default routes
 app.use(express.static(path.join(__dirname, 'public')));
